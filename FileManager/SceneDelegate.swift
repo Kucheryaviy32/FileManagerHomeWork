@@ -16,9 +16,16 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         guard let windowScene = (scene as? UIWindowScene) else { return }
        
-        let navigationController = UINavigationController(rootViewController: ViewController())
+        let tabBar = UITabBarController()
+                 let loginNavigationController = UINavigationController(rootViewController: LoginViewController())
+                 loginNavigationController.tabBarItem = UITabBarItem(tabBarSystemItem: .favorites, tag: 0)
+                 let settingsNavigationController = UINavigationController(rootViewController: SettingsViewController())
+                 settingsNavigationController.tabBarItem = UITabBarItem(tabBarSystemItem: .more, tag: 1)
+                 tabBar.viewControllers = [loginNavigationController, settingsNavigationController]
+
+
                self.window = UIWindow(windowScene: windowScene)
-               self.window?.rootViewController = navigationController
+               self.window?.rootViewController = tabBar
                self.window?.makeKeyAndVisible()
         
     }
